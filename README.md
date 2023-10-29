@@ -46,3 +46,31 @@ Alternative if you want to run curl/nslookup:
 ```bash
 $ kubectl run curl --image=radial/busyboxplus:curl -i --tty --rm
 ```
+
+## Running Test
+
+
+```bash
+$ helm test hello
+```
+
+
+Output:
+
+```
+NAME: hello
+LAST DEPLOYED: Mon Oct 30 00:33:10 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 14
+TEST SUITE:     hello-test-connection
+Last Started:   Mon Oct 30 00:33:12 2023
+Last Completed: Mon Oct 30 00:33:20 2023
+Phase:          Succeeded
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=hello,app.kubernetes.io/instance=hello" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
+```
