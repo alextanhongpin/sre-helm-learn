@@ -10,6 +10,10 @@ spec:
   containers:
     - name: wget
       image: busybox
-      command: ['wget']
-      args: ['{{ include "hello.fullname" . }}:{{ .Values.service.port }}']
+      # command: ['wget']
+      # args: ['{{ include "hello.fullname" . }}:{{ .Values.service.port }}']
+      # Calling `hello:80` doesn't seem to work?
+      # Also, we can't pass environment variable in
+      # command, unless we do this:
+      command: ['sh', '-c', 'wget $HELLO_SERVICE_HOST:{{ .Values.service.port }}', '-O-']
   restartPolicy: Never

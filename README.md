@@ -4,6 +4,7 @@
 $ helm create hello
 $ helm install hello hello
 $ helm status hello
+$ helm test hello
 ```
 
 ## Debug
